@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import api from '../services/api';
+import { userService } from '../services/dataServices';
 
 const AuthContext = createContext(null);
 
@@ -30,24 +31,43 @@ export const AuthProvider = ({ children }) => {
       if (response.data.success) {
         // Handle both nested and flat response structures
         const responseData = response.data.data || response.data;
-        const token = responseData.access_token ;
+        const token = responseData.access_token;
         const userData = responseData.userId;
         const sessionId = responseData.sessionId;
+        const isSystem = responseData.isSystem;
 
         if (token) {
           localStorage.setItem('token', token);
-          localStorage.setItem('user', JSON.stringify(userData));
           localStorage.setItem('sessionId', sessionId);
-          setUser(userData);
+          localStorage.setItem('isSystem', isSystem);
+          
+          try {
+            const userDetailsReq = await userService.getById(userData);
+            if (userDetailsReq.data?.success) {
+              const fullUser = userDetailsReq.data.data;
+              localStorage.setItem('user', JSON.stringify(fullUser));
+              setUser(fullUser);
+            } else {
+              localStorage.setItem('user', JSON.stringify({ _id: userData }));
+              setUser({ _id: userData });
+            }
+          } catch (e) {
+            console.error('Failed to fetch user details', e);
+            localStorage.setItem('user', JSON.stringify({ _id: userData }));
+            setUser({ _id: userData });
+          }
+          
           return { success: true };
         }
-
+        return { success: false, error: 'Authentication failed: Missing token in response.' };
       }
-      return { success: false, error: response.data.message || 'Login failed structure' };
+      return { success: false, error: response.data.error || response.data.message || 'Login failed' };
     } catch (error) {
+      console.error('Login error:', error);
+      const errorMessage = error.response?.data?.error || error.response?.data?.message || 'Login failed. Please check your credentials.';
       return { 
         success: false, 
-        error: error.response?.data?.message || 'Login failed. Please check your credentials.' 
+        error: errorMessage
       };
     }
   };
@@ -56,6 +76,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('sessionId');
+    localStorage.removeItem('isSystem');
     setUser(null);
   };
 

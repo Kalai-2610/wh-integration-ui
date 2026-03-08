@@ -8,11 +8,10 @@ const Sidebar = () => {
   const { logout } = useAuth()
   
   const menuItems = [
-    { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/' },
-    { icon: <Users size={20} />, label: 'Users', path: '/users' },
     { icon: <Code2 size={20} />, label: 'Resources', path: '/resources' },
     { icon: <ShieldCheck size={20} />, label: 'Credentials', path: '/credentials' },
     { icon: <Database size={20} />, label: 'Data Explorer', path: '/data' },
+    { icon: <Users size={20} />, label: 'Users', path: '/users' },
   ]
 
   return (

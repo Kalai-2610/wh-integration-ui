@@ -4,6 +4,7 @@ import { Database, Lock, User, ArrowRight, Loader2, AlertCircle } from 'lucide-r
 
 import { useAuth } from '../context/AuthContext'
 import { ADMIN_EMAIL } from '../config'
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 
 const Login = () => {
@@ -65,7 +66,7 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="login-form">
           <div className="input-group">
-            <label className="input-label">Email</label>
+            <label className="input-label">Email
             <div className="input-with-icon">
               <User size={18} className="field-icon" />
               <input 
@@ -76,11 +77,11 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-            </div>
+            </div></label>
           </div>
 
           <div className="input-group">
-            <label className="input-label">Password</label>
+            <label className="input-label">Password
             <div className="input-with-icon">
               <Lock size={18} className="field-icon" />
               <input 
@@ -91,7 +92,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </div>
+            </div></label>
           </div>
 
           <button 

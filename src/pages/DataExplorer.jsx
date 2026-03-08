@@ -20,7 +20,7 @@ const DataExplorer = () => {
         // Fetching from a general data endpoint if backend supports it
         const response = await api.get('/api/v1/data').catch(() => null)
         
-        if (response && response.data.success) {
+        if (response?.data?.success) {
           setData(response.data.data.map(d => ({
             id: d._id,
             resource: d.resource || 'Unknown',
@@ -36,7 +36,7 @@ const DataExplorer = () => {
           ])
         }
       } catch (err) {
-        setError('Failed to load data entries.')
+          setError('Failed to load data entries.', err.message, err.stack)
       } finally {
         setLoading(false)
       }

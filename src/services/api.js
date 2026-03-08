@@ -36,7 +36,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       try {
         // Attempt to refresh the token using /auth/v1/refresh_token
-        const response = await api.post('/auth/v1/refresh_token'); 
+        const response = await api.get('/auth/v1/refresh_token'); 
         if (response.data.success) {
           const responseData = response.data.data || response.data;
           const newToken = responseData.access_token;
@@ -60,6 +60,8 @@ api.interceptors.response.use(
     if (shouldLogout) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('sessionId');
+      localStorage.removeItem('isSystem');
       if (window.location.pathname !== '/login') {
         window.location.href = '/login';
       }

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
 import Users from './pages/Users'
 import Resources from './pages/Resources'
 import Credentials from './pages/Credentials'
@@ -36,12 +36,12 @@ function App() {
                   transition={{ delay: 0.2, duration: 0.4 }}
                 >
                   <Routes>
-                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/" element={<Navigate to="/resources" />} />
                     <Route path="/users" element={<Users />} />
                     <Route path="/resources" element={<Resources />} />
                     <Route path="/credentials" element={<Credentials />} />
                     <Route path="/data" element={<DataExplorer />} />
-                    <Route path="*" element={<Navigate to="/" />} />
+                    <Route path="*" element={<Navigate to="/resources" />} />
                   </Routes>
                 </motion.div>
               </div>

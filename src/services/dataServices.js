@@ -9,7 +9,7 @@ export const userService = {
 };
 
 export const resourceService = {
-  getAll: () => api.get('/api/v1/resources'),
+  getAll: (params) => api.get('/api/v1/resources', { params }),
   getById: (id) => api.get(`/api/v1/resources/${id}`),
   create: (data) => api.post('/api/v1/resources', data),
   update: (id, data) => api.patch(`/api/v1/resources/${id}`, data),
