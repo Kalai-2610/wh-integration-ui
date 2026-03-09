@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { USERS } from "../service/data";
-import '../styles/UserManagement.css'
-import { formatDate } from "../service/utils";
 import STRINGS from "../assets/strings";
+import { USERS } from "../service/data";
+import { formatDate, formatDateTime } from "../service/utils";
+import '../styles/UserManagement.css'
 
 export default function UserManagement() {
 
@@ -14,8 +14,7 @@ export default function UserManagement() {
   const [page, setPage] = useState(1);
   const [sortBy, setSortBy] = useState('name')
   const [sortOrder, setSortOrder] = useState('asc')
-  const [total, setTotal] = useState('asc')
-  const [totalPages, setTotalPages] = useState(0);
+  const [total, setTotal] = useState(0)
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -38,13 +37,12 @@ export default function UserManagement() {
         sortBy: sortBy,
         sortOrder: sortOrder,
         search: search,
-        isActive: isActive
+        is_active: isActive
       }
     };
     USERS.get_all(params).then(res => {
       setUsers(res.data.data);
       setTotal(res.data.pagination.total)
-      setTotalPages(Math.ceil(total / size));
     }).catch(err => console.error(err));
   };
 
@@ -93,6 +91,17 @@ export default function UserManagement() {
       }
     }).catch(err => console.error(err));
   };
+
+  const handleStatus = (_id) => {
+    const data = { _id, is_active: !isActive }
+    USERS.activate_deactivate(data).then(res => {
+      if (res.data.success) {
+        fetchUsers();
+      }
+    }).catch(err => console.error(err));
+  }
+
+  const totalPages = Math.ceil(total / size)
 
   useEffect(fetchUsers, [page, size, sortBy, sortOrder, search, isActive]);
 
@@ -160,7 +169,10 @@ export default function UserManagement() {
                   Edit
                 </button>
                 {isSystemUser && (
-                  <button className="status-btn">
+                  <button className="status-btn" onClick={(e) => {
+                    e.stopPropagation();
+                    handleStatus(u._id)
+                  }}>
                     {u.is_active ? "Deactivate" : "Activate"}
                   </button>
                 )}
@@ -281,10 +293,15 @@ export default function UserManagement() {
             >
               ✕
             </button>
-            <p><b>Name:</b> {selectedUser.name}</p>
-            <p><b>Email:</b> {selectedUser.email}</p>
-            <p><b>Created By:</b> {selectedUser?._createdBy?.name ?? "-"}</p>
-            <p><b>Updated By:</b> {selectedUser?._updatedBy?.name ?? "-"}</p>
+            <p>
+              <b>Name       :</b> {selectedUser.name} <br />
+              <b>Email      :</b> {selectedUser.email} <br />
+              <b>Created By :</b> {selectedUser?._createdBy?.name ?? "-"} <br />
+              <b>Created On :</b> {formatDateTime(selectedUser?._created_on) ?? "-"} <br />
+              <b>Updated By :</b> {selectedUser?._updatedBy?.name ?? "-"} <br />
+              <b>Updated On :</b> {formatDateTime(selectedUser?._updated_on) ?? "-"} <br />
+              <b>Status     :</b> {selectedUser?.is_active ? "Active" : "In-Active"} <br />
+            </p>
           </div>
         </div>
       )}

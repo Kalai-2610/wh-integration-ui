@@ -4,16 +4,19 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import DashboardLayout from "./pages/DashboardLayout";
 import './App.css'
+import { logOutUser } from "./service/auth";
 
 function App() {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('sessionId');
-    localStorage.removeItem('isSystem');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('username');
-    setIsLoggedIn(false)
+    logOutUser().finally(() => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('sessionId');
+      localStorage.removeItem('isSystem');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('username');
+      setIsLoggedIn(false)
+    });
   };
   return (
     <BrowserRouter>
