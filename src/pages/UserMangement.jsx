@@ -92,8 +92,10 @@ export default function UserManagement() {
     }).catch(err => console.error(err));
   };
 
-  const handleStatus = (_id) => {
-    const data = { _id, is_active: !isActive }
+  const handleStatus = (u) => {
+    const text = !u.is_active ? "Activate" : "Deactivate";
+    if (!window.confirm(`${text} User?`)) return;
+    const data = { _id: u._id, is_active: !isActive }
     USERS.activate_deactivate(data).then(res => {
       if (res.data.success) {
         fetchUsers();
@@ -160,18 +162,18 @@ export default function UserManagement() {
                 {formatDate(u._updated_on)}
               </td>
               <td>
-                <button className="edit-btn" onClick={(e) => {
-                  e.stopPropagation();
+                {isActive === 1 && (<button className="edit-btn" onClick={(e) => {                 e.stopPropagation();
+                  setErrors({});
                   setForm({ name: u.name });
                   setEditID(u._id)
                   setShowEditModal(true);
                 }}>
                   Edit
-                </button>
+                </button>)}
                 {isSystemUser && (
                   <button className="status-btn" onClick={(e) => {
                     e.stopPropagation();
-                    handleStatus(u._id)
+                    handleStatus(u)
                   }}>
                     {u.is_active ? "Deactivate" : "Activate"}
                   </button>
