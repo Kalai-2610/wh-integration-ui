@@ -29,3 +29,17 @@ export const CREDENTIALS = {
     delete: (id) => delete_creads(id),
     clear: () => clear_creads()
 }
+
+const get_all_resource = async (params) => axiosInstance.get('/api/v1/resources', params);
+const get_resource = async (id) => axiosInstance.get(`/api/v1/resources/${id}`);
+const create_resource = async (data) => axiosInstance.post('/api/v1/resources', data);
+const update_resource = async (id, data) => axiosInstance.patch(`/api/v1/resources/${id}`, data);
+const delete_resource = async (id) => axiosInstance.delete(`/api/v1/resources/${id}`);
+
+export const RESOURCES = {
+    get_all: (params) => get_all_resource(params),
+    get: (id) => get_resource(id),
+    create: (data) => create_resource(data),
+    update: (id, data) => update_resource(id, data),
+    delete: (id) => delete_resource(id),
+}
