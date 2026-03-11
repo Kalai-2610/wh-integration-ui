@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import STRINGS from "../assets/strings";
 import { USERS } from "../service/data";
 import { formatDate, formatDateTime } from "../service/utils";
-import '../styles/UserManagement.css'
+import '../styles/UserManagement.css';
 
 export default function UserManagement() {
 
@@ -128,7 +128,7 @@ export default function UserManagement() {
         <input
           className="search-input"
           type="text"
-          placeholder="Search..."
+          placeholder="Search by name or email..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -145,20 +145,20 @@ export default function UserManagement() {
       <table className="users-table">
         <thead>
           <tr>
-            <th onClick={() => handleSort("name")}> Name </th>
-            <th onClick={() => handleSort("email")}> Email </th>
-            <th onClick={() => handleSort("_updatedBy")}> Updated By </th>
-            <th onClick={() => handleSort("_updated_on")}> Updated On </th>
+            <th onClick={() => handleSort("name")} style={{cursor: "pointer"}}> Name </th>
+            <th onClick={() => handleSort("email")} style={{cursor: "pointer"}}> Email </th>
+            <th onClick={() => handleSort("_updatedBy")} style={{cursor: "pointer"}}> Updated By </th>
+            <th onClick={() => handleSort("_updated_on")} style={{cursor: "pointer"}}> Updated On </th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {users.map((u) => (
             <tr key={u._id}>
-              <td onClick={() => setSelectedUser(u)}>{u.name}</td>
-              <td onClick={() => setSelectedUser(u)}>{u.email}</td>
-              <td onClick={() => setSelectedUser(u)}>{u._updatedBy?.name}</td>
-              <td onClick={() => setSelectedUser(u)}>
+              <td onClick={() => setSelectedUser(u)} style={{cursor: "pointer"}}>{u.name}</td>
+              <td onClick={() => setSelectedUser(u)} style={{cursor: "pointer"}}>{u.email}</td>
+              <td onClick={() => setSelectedUser(u)} style={{cursor: "pointer"}}>{u._updatedBy?.name}</td>
+              <td onClick={() => setSelectedUser(u)} style={{cursor: "pointer"}}>
                 {formatDate(u._updated_on)}
               </td>
               <td>

@@ -46,7 +46,6 @@ export default function Login() {
         if (flag) {
             let response = await loginUser({ email, password })
             if (response?.error) {
-                console.log(response)
                 setPasswordError(response.error)
             } else {
                 localStorage.setItem("token", response.access_token);

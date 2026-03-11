@@ -4,7 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const axiosInstance = axios.create({
-	baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000',
+	// baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000',
+	baseURL:  `${window.location.protocol}//${window.location.hostname}:${import.meta.env.VITE_API_PORT?.trim()}`,
 	timeout: 60000,
 	headers: {
 		'Content-Type': 'application/json'

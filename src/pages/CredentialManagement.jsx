@@ -78,14 +78,12 @@ export default function CredentialsManagement() {
   }
   const toggleScope = (scope) => {
     let res = [...(form.scopes ?? [])];
-    console.log("Before", res)
     const exists = res?.includes(scope);
     if (exists)
       res = res.filter(s => s !== scope);
     else
       res.push(scope);
     setForm({ ...form, scopes: res });
-    console.log("After", form.scopes)
   };
 
   const validateCreate = () => {
@@ -168,7 +166,7 @@ export default function CredentialsManagement() {
         <input
           className="name-input"
           type="text"
-          placeholder="Name..."
+          placeholder="Search by name..."
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -185,24 +183,24 @@ export default function CredentialsManagement() {
       <table className="credentials-table">
         <thead>
           <tr>
-            <th onClick={() => handleSort("name")}> Name </th>
-            <th onClick={() => handleSort("type")}> Type </th>
+            <th onClick={() => handleSort("name")} style={{cursor: "pointer"}}> Name </th>
+            <th onClick={() => handleSort("type")} style={{cursor: "pointer"}}> Type </th>
             <th> Scope </th>
-            <th onClick={() => handleSort("_expire_on")}> Expire At </th>
-            <th onClick={() => handleSort("_updatedBy")}> Updated By </th>
-            <th onClick={() => handleSort("_updated_on")}> Updated On </th>
+            <th onClick={() => handleSort("_expire_on")} style={{cursor: "pointer"}}> Expire At </th>
+            <th onClick={() => handleSort("_updatedBy")} style={{cursor: "pointer"}}> Updated By </th>
+            <th onClick={() => handleSort("_updated_on")} style={{cursor: "pointer"}}> Updated On </th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {credentials.map((c) => (
             <tr key={c._id}>
-              <td onClick={() => setSelectedCredential(c)}>{c.name}</td>
-              <td onClick={() => setSelectedCredential(c)}>{displayType(c.type)}</td>
-              <td onClick={() => setSelectedCredential(c)}>{displayScope(c.scopes)}</td>
-              <td onClick={() => setSelectedCredential(c)}>{formatDateTime(c._expire_on)}</td>
-              <td onClick={() => setSelectedCredential(c)}>{c._updatedBy?.name}</td>
-              <td onClick={() => setSelectedCredential(c)}>{formatDate(c._updated_on)}</td>
+              <td onClick={() => setSelectedCredential(c)} style={{cursor: "pointer"}}>{c.name}</td>
+              <td onClick={() => setSelectedCredential(c)} style={{cursor: "pointer"}}>{displayType(c.type)}</td>
+              <td onClick={() => setSelectedCredential(c)} style={{cursor: "pointer"}}>{displayScope(c.scopes)}</td>
+              <td onClick={() => setSelectedCredential(c)} style={{cursor: "pointer"}}>{formatDateTime(c._expire_on)}</td>
+              <td onClick={() => setSelectedCredential(c)} style={{cursor: "pointer"}}>{c._updatedBy?.name}</td>
+              <td onClick={() => setSelectedCredential(c)} style={{cursor: "pointer"}}>{formatDate(c._updated_on)}</td>
               <td>
                 <button className="edit-btn" onClick={(e) => {
                   e.stopPropagation();
