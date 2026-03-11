@@ -21,9 +21,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={isLoggedIn ? <Navigate to='/resource_management' /> : <Navigate to='/login' />} />
+        <Route path="/" element={<Navigate to='/resource_management' />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/resource_management" element={ isLoggedIn ? <DashboardLayout onLogout={handleLogout} page='resource_management' /> : <Navigate to='/login' />} />
+        <Route path="/resource_management" element={<DashboardLayout onLogout={handleLogout} page='resource_management' />} />
         {/* Catch all routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>

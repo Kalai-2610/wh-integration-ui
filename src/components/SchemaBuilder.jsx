@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../styles/SchemaBuilder.css"
 
 const FIELD_TYPES = [
@@ -68,12 +67,6 @@ export default function SchemaBuilder({ schema, setSchema, depth = 1 }) {
     const addOption = (index) => {
         const updated = [...schema];
         updated[index].options = [...(updated[index].options || []), ""];
-        setSchema(updated);
-    };
-
-    const updateOption = (index, optIndex, value) => {
-        const updated = [...schema];
-        updated[index].options[optIndex] = value;
         setSchema(updated);
     };
 
