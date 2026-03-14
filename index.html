@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WH Integration</title>
+    <link rel="stylesheet" href="./index.css"/>
+    <script>
+      (function() {
+        var preference = matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = localStorage.getItem('theme');
+        if (theme === 'light' || (!theme && !preference)) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

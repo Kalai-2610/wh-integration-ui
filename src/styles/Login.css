@@ -1,0 +1,132 @@
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    position: relative;
+}
+
+/* Card */
+.login-card {
+    width: 380px;
+    max-width: 100%;
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--glass-shadow);
+    transition: transform var(--transition-smooth);
+}
+
+/* Title */
+.login-title {
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+/* Subtitle */
+.login-subtitle {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--text-secondary);
+}
+
+/* Input fields */
+.login-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-md);
+}
+
+.login-field label {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Input */
+.login-field input {
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--glass-border);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.login-field input::placeholder {
+    color: var(--text-muted);
+}
+
+.login-field input:focus {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 2px var(--brand-primary-muted);
+}
+
+/* Login button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--brand-primary);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.login-btn:hover {
+    background: var(--brand-secondary);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+
+  background: var(--glass-bg);
+  color: var(--text-primary);
+
+  cursor: pointer;
+  font-size: 18px;
+
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glass-shadow);
+
+  transition: all var(--transition-fast);
+}
+
+/* Hover Effect */
+.theme-toggle:hover {
+  background: var(--bg-hover);
+  transform: scale(1.05);
+}
+
+.input-error {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}

@@ -1,0 +1,55 @@
+.nf-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+}
+
+.nf-card {
+  text-align: center;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  max-width: 520px;
+  width: 90%;  
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  transition: transform var(--transition-smooth);
+}
+
+.nf-code {
+  font-size: 6rem;
+  margin: 0;
+  font-weight: 800;
+  color: var(--brand-primary);
+  text-shadow: 0 0 25px var(--brand-primary-glow);
+}
+
+.nf-title {
+  margin-top: var(--space-sm);
+  font-size: 1.8rem;
+  color: var(--text-primary);
+}
+
+.nf-text {
+  margin-top: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+.nf-button {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  padding: 12px 26px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+
+  background: var(--brand-primary);
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.nf-button:hover {
+  background: var(--brand-secondary);
+  color: var(--text-secondary);
+}

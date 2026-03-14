@@ -1,0 +1,164 @@
+/* Schema container */
+
+.schema-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+
+    padding: 12px;
+    background: var(--bg-input);
+}
+
+/* Individual schema item */
+
+.schema-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Row layout */
+
+.schema-row {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr 80px 80px 40px 40px;
+
+    gap: 8px;
+    align-items: center;
+}
+
+/* Inputs */
+
+.schema-row input,
+.schema-row select {
+    padding: 6px 8px;
+
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--glass-border);
+
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* Checkbox alignment */
+
+.schema-row label {
+    display: flex;
+    justify-content: center;
+}
+
+/* Icons */
+
+.schema-icon {
+    border: none;
+    background: var(--bg-tertiary);
+
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+    padding: 4px 6px;
+
+    font-size: 14px;
+}
+
+.schema-icon.delete {
+    color: var(--error);
+}
+
+/* Settings panel */
+
+.schema-settings {
+    border: 1px dashed var(--glass-border);
+
+    border-radius: var(--radius-sm);
+
+    padding: 10px;
+    background: var(--bg-secondary);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.schema-setting-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+/* Add option button */
+
+.add-option {
+    align-self: flex-start;
+
+    padding: 4px 8px;
+
+    border: none;
+    border-radius: var(--radius-sm);
+
+    background: var(--brand-secondary);
+    color: white;
+
+    cursor: pointer;
+}
+
+.option-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.option-row input {
+    flex: 1;
+}
+
+.remove-option {
+    border: none;
+    background: var(--error);
+    color: white;
+
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+}
+
+.remove-option:hover {
+    opacity: 0.9;
+}
+
+/* Nested schema */
+
+.nested-schema {
+    margin-left: 24px;
+}
+
+/* Add field */
+
+.add-field-btn {
+    margin-top: 8px;
+
+    padding: 6px 10px;
+
+    border: none;
+    border-radius: var(--radius-sm);
+
+    background: var(--brand-primary);
+    color: white;
+
+    cursor: pointer;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
