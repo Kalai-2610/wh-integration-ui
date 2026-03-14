@@ -55,6 +55,20 @@ export default function SchemaBuilder({ schema, setSchema, depth = 1 }) {
     const updateField = (index, key, value) => {
         const updated = [...schema];
         updated[index][key] = value;
+        if (key === "type") {
+            updated[index].options = [];
+            updated[index].min = "";
+            updated[index].max = "";
+            updated[index].regex = "";
+            updated[index].email = false;
+            updated[index].lowercase = false;
+            updated[index].uppercase = false;
+            updated[index].integer = false;
+            updated[index].decimal = false;
+            updated[index].decimal_min_places = "";
+            updated[index].decimal_max_places = "";
+            updated[index].keys = [];
+        }
         setSchema(updated);
     };
 
@@ -117,15 +131,12 @@ export default function SchemaBuilder({ schema, setSchema, depth = 1 }) {
                             </select>
 
                             <label className="checkbox-label">
-
                                 <input
                                     type="checkbox"
                                     checked={field.required || false}
                                     onChange={(e) => updateField(i, "required", e.target.checked)}
                                 />
-
                                 Required
-
                             </label>
 
                             <label className="checkbox-label">
@@ -164,7 +175,7 @@ export default function SchemaBuilder({ schema, setSchema, depth = 1 }) {
 
                                 {/* OPTIONS */}
 
-                                {!hasValidation && (
+                                {!hasValidation && field.type !== "object" && field.type !== "boolean" && (
 
                                     <div className="schema-setting-block">
 
@@ -406,7 +417,7 @@ export default function SchemaBuilder({ schema, setSchema, depth = 1 }) {
 
                         {/* NESTED OBJECT */}
 
-                        {field.type === "object" && depth < 3 && (
+                        {field.type === "object" && (
 
                             <div className="nested-schema">
 

@@ -92,20 +92,20 @@ export default function ResourceManagement() {
 
     try {
       const schema = form.schema;
-
+      console.log(schema);
       const checkDepth = (obj, depth = 1) => {
-        if (depth > 3) return false;
-        if (typeof obj !== "object") return true;
-
-        for (let key in obj) {
-          if (!checkDepth(obj[key], depth + 1))
-            return false;
+        console.log(obj, depth, import.meta.env.VITE_OBJ_DEPTH);
+        if (depth > Number.parseInt(import.meta.env.VITE_OBJ_DEPTH)) return false;
+        if (Array.isArray(obj)) {
+          return obj.map(item => checkDepth(item, depth)).every(item => item)
+        } else if (typeof obj === "object" && Object.keys(obj).includes('keys') && obj.keys.length) {
+          return checkDepth(obj.keys, depth + 1)
         }
         return true;
       }
 
       if (!checkDepth(schema))
-        newErrors.schema = "Schema nesting > 3 levels not allowed";
+        newErrors.schema = `Schema nesting > ${import.meta.env.VITE_OBJ_DEPTH} levels not allowed`;
 
     } catch {
       newErrors.schema = "Schema must be valid JSON";

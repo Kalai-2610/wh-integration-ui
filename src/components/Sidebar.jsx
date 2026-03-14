@@ -5,11 +5,11 @@ export default function Sidebar({ setActivePage, onLogout }) {
     const profileRef = useRef(null);
     const [open, setOpen] = useState(false);
     const username = localStorage.getItem("username");
-    const firstLetter = username.charAt(0).toUpperCase();
+    const firstLetter = username?.charAt(0)?.toUpperCase();
     const [theme, setTheme] = useState(
         document.documentElement.getAttribute("data-theme") || "dark"
     );
-    
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (profileRef.current && !profileRef.current.contains(event.target)) {

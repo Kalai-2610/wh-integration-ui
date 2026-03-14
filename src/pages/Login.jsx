@@ -54,6 +54,7 @@ export default function Login() {
                 localStorage.setItem("userId", response.userId);
                 localStorage.setItem("username", response.user_name);
                 setIsLoggedIn(true);
+                localStorage.setItem("auth_event", Date.now());
                 navigate('/resource_management');
             }
         }

@@ -3,9 +3,10 @@ import STRINGS from '../assets/strings';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+let baseURL = import.meta.env.VITE_API_BASE_URL || `${globalThis.location.protocol}//${globalThis.location.hostname}`
+if (import.meta.env.VITE_API_PORT) baseURL += `:${import.meta.env.VITE_API_PORT?.trim()}`
 const axiosInstance = axios.create({
-	// baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000',
-	baseURL:  `${window.location.protocol}//${window.location.hostname}:${import.meta.env.VITE_API_PORT?.trim()}`,
+	baseURL,
 	timeout: 60000,
 	headers: {
 		'Content-Type': 'application/json'
